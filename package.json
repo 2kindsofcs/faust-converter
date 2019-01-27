@@ -1,0 +1,40 @@
+{
+  "name": "faust-converter",
+  "version": "0.0.0",
+  "description": "\"나 술 별로 안 먹었어\"라고 주장하는 술고래 친구가 있습니까? 파우스트 컨버터로 팩트를 던져주십시오.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2kindsofcs/faust-converter.git"
+  },
+  "author": "2kindsofcs <2kindsofcs@gmail.com>",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/2kindsofcs/faust-converter/issues"
+  },
+  "homepage": "https://github.com/2kindsofcs/faust-converter#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "immutability-helper": "^3.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5"
+  }
+}
