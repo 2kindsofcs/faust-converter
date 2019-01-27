@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - gh-pages
+
+    docker:
+      - image: circleci/node:10.15
+
+    working_directory: ~/repo
+
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Build webpack
+          command: npm run build
+
+      - add_ssh_keys:
+          fingerprints:
+              - "a6:89:fa:7c:f1:e5:0b:47:86:70:62:68:07:8e:89:ff"
+
+      - deploy:
+          name: Deploy
+          command: |
+            git config user.email "2kindsofcs@gmail.com"
+            git config user.name "2kindsofcs"
+            npm install gh-pages@2.0.1
+            ./node_modules/.bin/gh-pages --dotfiles --message "[skip ci] Updates" --dist dist
